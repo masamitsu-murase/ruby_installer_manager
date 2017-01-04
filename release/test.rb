@@ -6,7 +6,11 @@ require("pathname")
 require("uri")
 
 
-p RubyInstallerManager::AutoManager.create
+a = RubyInstallerManager::AutoManager.create
+p a.ruby_list
+p a.ruby_manager("ruby233", "hoge", "hoge")
+p a.devkit_manager_for_ruby("ruby233", "hoge", "hoge")
+exit
 
 
 obj = YAML.load_file("release/file_list.yml")
