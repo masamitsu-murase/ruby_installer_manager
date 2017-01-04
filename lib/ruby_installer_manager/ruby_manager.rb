@@ -8,9 +8,9 @@ require("ruby_installer_manager/downloader")
 
 module RubyInstallerManager
   class RubyManager < Downloader
-    def initialize(dir, url, file_path,
+    def initialize(dir, url, cache_file_path,
         force: false, proxy_addr: nil, proxy_port: 80, ca_file: Downloader::CA_FILE)
-      super(url, file_path, proxy_addr: proxy_addr, proxy_port: proxy_port, ca_file: ca_file)
+      super(url, cache_file_path, proxy_addr: proxy_addr, proxy_port: proxy_port, ca_file: ca_file)
       @dir = Pathname(dir).expand_path
       @force = force
     end

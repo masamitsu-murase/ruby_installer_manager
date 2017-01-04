@@ -1,0 +1,32 @@
+# 2017-01-04
+---
+ruby:
+  ruby233:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.3.3-i386-mingw32.7z
+    devkit: devkit_32bit
+  ruby233_64bit:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.3.3-x64-mingw32.7z
+    devkit: devkit_64bit
+  ruby226:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.6-i386-mingw32.7z
+    devkit: devkit_32bit
+  ruby226_64bit:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.6-x64-mingw32.7z
+    devkit: devkit_64bit
+  ruby219:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.1.9-i386-mingw32.7z
+    devkit: devkit_32bit
+  ruby219_64bit:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.1.9-x64-mingw32.7z
+    devkit: devkit_64bit
+  ruby200p648:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p648-i386-mingw32.7z
+    devkit: devkit_32bit
+  ruby200p648_64bit:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p648-x64-mingw32.7z
+    devkit: devkit_64bit
+devkit:
+  devkit_32bit:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe
+  devkit_64bit:
+    url: https://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe
