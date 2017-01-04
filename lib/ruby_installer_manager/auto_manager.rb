@@ -9,7 +9,7 @@ require("ruby_installer_manager/downloader")
 
 module RubyInstallerManager
   class AutoManager
-    FILE_LIST_URL = "https://raw.githubusercontent.com/masamitsu-murase/ruby_installer_manager/master/resource/file_list.yml"
+    FILE_LIST_URL = "https://raw.githubusercontent.com/masamitsu-murase/ruby_installer_manager/master/release/file_list.yml"
 
     extend HttpDownload
 
