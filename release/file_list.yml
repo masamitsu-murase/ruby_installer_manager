@@ -1,28 +1,28 @@
 # 2017-01-04
 ---
 ruby:
-  ruby233:
+  ruby2.3.3:
     url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.3.3-i386-mingw32.7z
     devkit: devkit_32bit
-  ruby233_64bit:
+  ruby2.3.3_64bit:
     url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.3.3-x64-mingw32.7z
     devkit: devkit_64bit
-  ruby226:
+  ruby2.2.6:
     url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.6-i386-mingw32.7z
     devkit: devkit_32bit
-  ruby226_64bit:
+  ruby2.2.6_64bit:
     url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.6-x64-mingw32.7z
     devkit: devkit_64bit
-  ruby219:
+  ruby2.1.9:
     url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.1.9-i386-mingw32.7z
     devkit: devkit_32bit
-  ruby219_64bit:
+  ruby2.1.9_64bit:
     url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.1.9-x64-mingw32.7z
     devkit: devkit_64bit
-  ruby200p648:
+  ruby2.0.0p648:
     url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p648-i386-mingw32.7z
     devkit: devkit_32bit
-  ruby200p648_64bit:
+  ruby2.0.0p648_64bit:
     url: https://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p648-x64-mingw32.7z
     devkit: devkit_64bit
 devkit:

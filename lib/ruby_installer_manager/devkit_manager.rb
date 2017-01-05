@@ -43,6 +43,14 @@ module RubyInstallerManager
     end
 
     def install(ruby_path_list, ruby_path=RbConfig::ruby)
+      ruby_path_list = Array(ruby_path_list).map do |item|
+        if item.kind_of? RubyManager
+          next item.dir.to_s
+        else
+          next item.to_s
+        end
+      end
+
       Dir.chdir(@dir) do
         yaml = "config.yml"
         File.open(yaml, "w") do |file|

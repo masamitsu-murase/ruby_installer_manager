@@ -6,35 +6,35 @@ require("pathname")
 require("uri")
 
 
-a = RubyInstallerManager::AutoManager.create
-p a.ruby_list
-p a.ruby_manager("ruby233", "hoge", "hoge")
-p a.devkit_manager_for_ruby("ruby233", "hoge", "hoge")
-exit
-
-
-obj = YAML.load_file("release/file_list.yml")
-
 base_dir = Pathname(__dir__).parent + "tmp"
 
-devkit_list = obj["devkit"].map do |k,v|
-  path = base_dir + k
-  cache_file = base_dir + (k + ".7z")
-  [ k, v, RubyInstallerManager::DevkitManager.new(path, v["url"], cache_file) ]
-end
-devkit_list.map(&:last).each(&:prepare)
+am = RubyInstallerManager::AutoManager.create
+p am.ruby_list
 
-ruby_list = obj["ruby"].map do |k,v|
-  path = base_dir + k
-  cache_file = base_dir + (k + ".7z")
-  [ k, v, RubyInstallerManager::RubyManager.new(path, v["url"], cache_file) ]
+ruby_name_list = [ "ruby2.3.3", "ruby2.2.6" ]
+
+ruby_list = ruby_name_list.map do |ruby_name|
+  next am.ruby_manager(ruby_name, base_dir + ruby_name, base_dir + "#{ruby_name}.7z")
 end
 
-ruby_list.map(&:last).each(&:prepare)
-
-devkit_list.each do |item|
-  name = item[0]
-  ruby = ruby_list.select{ |i| i[1]["devkit"] == name }
-  item.last.install(ruby.map(&:last).map(&:dir))
+devkit_name_list = ruby_name_list.map{ |i| am.devkit_name_for_ruby(i) }.uniq
+devkit_list = devkit_name_list.map do |devkit_name|
+  next am.devkit_manager(devkit_name, base_dir + devkit_name, base_dir + "#{devkit_name}.7z")
 end
+
+
+ruby_list.zip(ruby_name_list) do |ruby, ruby_name|
+  puts ruby_name
+  ruby.prepare
+end
+
+devkit_list.zip(devkit_name_list) do |devkit, devkit_name|
+  puts devkit_name
+  devkit.prepare
+end
+
+devkit_list.zip(devkit_name_list) do |devkit, devkit_name|
+  devkit.install(ruby_list.zip(ruby_name_list).select{ |i,j| j == devkit_name }.map(&:first))
+end
+
 
