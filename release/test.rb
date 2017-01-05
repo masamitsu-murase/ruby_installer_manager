@@ -11,6 +11,7 @@ base_dir = Pathname(__dir__).parent + "tmp"
 am = RubyInstallerManager::AutoManager.create
 p am.ruby_list
 
+
 ruby_name_list = [ "ruby2.3.3", "ruby2.2.6" ]
 
 ruby_list = ruby_name_list.map do |ruby_name|
@@ -23,6 +24,8 @@ devkit_list = devkit_name_list.map do |devkit_name|
 end
 
 
+#================================================================
+# Prepare and install
 ruby_list.zip(ruby_name_list) do |ruby, ruby_name|
   puts ruby_name
   ruby.prepare
@@ -34,7 +37,6 @@ devkit_list.zip(devkit_name_list) do |devkit, devkit_name|
 end
 
 devkit_list.zip(devkit_name_list) do |devkit, devkit_name|
-  devkit.install(ruby_list.zip(ruby_name_list).select{ |i,j| j == devkit_name }.map(&:first))
+  devkit.install(ruby_list.zip(ruby_name_list).select{ |i,j| am.devkit_name_for_ruby(j) == devkit_name }.map(&:first))
 end
-
 
