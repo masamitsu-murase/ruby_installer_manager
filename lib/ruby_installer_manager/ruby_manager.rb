@@ -79,9 +79,11 @@ module RubyInstallerManager
       end
     end
 
-    def install_gem(gem, version: nil)
+    def install_gem(gem, version: nil, platform: nil)
       ruby_env do
-        str = (version ? "#{gem} --version \"#{version}\"" : gem)
+        str = "#{gem}"
+        str += " --version \"#{version}\"" if version
+        str += " --platform #{platform}" if platform
         system("gem install #{str} -N -q", err: :out, out: File::NULL)
       end
     end
