@@ -34,13 +34,13 @@ module RubyInstallerManager
     def ruby_manager(name, dir, cache_file_path, force: false)
       info = @data["ruby"][name]
       raise "#{name} not found" unless info
-      RubyInstallerManager::RubyManager.new(dir, info["url"], cache_file_path, force: force)
+      RubyInstallerManager::RubyManager.new(dir, info["url"], cache_file_path, force: force, proxy_addr: @proxy_addr, proxy_port: @proxy_port)
     end
 
     def devkit_manager(name, dir, cache_file_path, force: false)
       info = @data["devkit"][name]
       raise "#{name} not found" unless info
-      RubyInstallerManager::DevkitManager.new(dir, info["url"], cache_file_path, force: force)
+      RubyInstallerManager::DevkitManager.new(dir, info["url"], cache_file_path, force: force, proxy_addr: @proxy_addr, proxy_port: @proxy_port)
     end
 
     def devkit_name_for_ruby(ruby_name)
