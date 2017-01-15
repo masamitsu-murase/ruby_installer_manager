@@ -8,13 +8,14 @@ require("ruby_installer_manager/downloader")
 
 module RubyInstallerManager
   class DevkitManager < Downloader
-    def initialize(dir, url, cache_file_path,
+    def initialize(name, dir, url, cache_file_path,
         force: false, proxy_addr: nil, proxy_port: 80, ca_file: Downloader::CA_FILE)
       super(url, cache_file_path, proxy_addr: proxy_addr, proxy_port: proxy_port, ca_file: ca_file)
+      @name = name
       @dir = Pathname(dir).expand_path
       @force = force
     end
-    attr_reader :dir, :url
+    attr_reader :name, :dir, :url
 
     def prepare
       clear_cache if @force
