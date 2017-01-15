@@ -5,6 +5,7 @@ require("yaml")
 require("seven_zip_ruby")
 require("bundler")
 require("ruby_installer_manager/downloader")
+require("tempfile")
 
 module RubyInstallerManager
   class RubyManager < Downloader
@@ -46,6 +47,17 @@ module RubyInstallerManager
         raise "Too many directories" unless dirs.size == 1
         FileUtils.mv(Dir.glob(dirs[0] + "/*").to_a, ".")
         FileUtils.rmdir(dirs[0])
+      end
+    end
+
+    def run_with_devkit(command, devkit)
+      Tempfile.open([ "ruby_manager", ".bat" ], ".") do |file|
+        devkit_path = (devkit.dir + "devkitvars.bat").to_s.gsub("/"){ "\\" }
+        file.puts("call \"#{devkit_path}\"")
+        file.puts command
+        file.close(false)
+
+        system(file.path.to_s.gsub("/"){ "\\" })
       end
     end
 
