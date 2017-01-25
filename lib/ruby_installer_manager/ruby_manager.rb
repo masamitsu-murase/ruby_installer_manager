@@ -50,14 +50,17 @@ module RubyInstallerManager
       end
     end
 
-    def run_with_devkit(command, devkit)
-      Tempfile.open([ "ruby_manager", ".bat" ], ".") do |file|
-        devkit_path = (devkit.dir + "devkitvars.bat").to_s.gsub("/"){ "\\" }
-        file.puts("call \"#{devkit_path}\"")
-        file.puts command
-        file.close(false)
+    def run_with_devkit(command, devkit, opt={})
+      ruby_env do
+        Tempfile.create([ "ruby_manager", ".bat" ], Dir.pwd) do |file|
+          devkit_path = (devkit.dir + "devkitvars.bat").to_s.gsub("/"){ "\\" }
+          file.puts "@echo off"
+          file.puts("call \"#{devkit_path}\"")
+          file.puts command
+          file.close
 
-        system(file.path.to_s.gsub("/"){ "\\" })
+          return system(file.path.to_s.gsub("/"){ "\\" }, opt)
+        end
       end
     end
 
